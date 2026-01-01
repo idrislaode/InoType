@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Arduino-inspired dark theme */
+    --background: 220 20% 7%;
+    --foreground: 210 20% 90%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 90%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 90%;
+
+    /* Arduino Teal as primary */
+    --primary: 180 100% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 20% 85%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 180 80% 25%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 180 100% 31%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors for typing */
+    --arduino-teal: 180 100% 31%;
+    --arduino-green: 142 76% 45%;
+    --arduino-yellow: 45 93% 58%;
+    --arduino-red: 0 84% 60%;
+    
+    /* Code editor colors */
+    --code-bg: 220 20% 8%;
+    --code-line: 220 15% 12%;
+    --code-correct: 142 76% 45%;
+    --code-incorrect: 0 84% 60%;
+    --code-current: 180 100% 31%;
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 180 100% 31%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 180 100% 31%;
+  }
+
+  .dark {
+    --background: 220 20% 7%;
+    --foreground: 210 20% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Stat cards */
+  .stat-card {
+    @apply px-6 py-4 rounded-xl bg-card border border-border/50;
+    @apply flex flex-col gap-1 min-w-[120px];
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(220 18% 8%) 100%);
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Code editor */
+  .code-editor {
+    @apply rounded-xl border border-border/50 overflow-hidden;
+    background: linear-gradient(180deg, hsl(var(--code-bg)) 0%, hsl(220 20% 6%) 100%);
+    box-shadow: 
+      0 0 0 1px hsl(var(--border) / 0.5),
+      0 8px 40px -8px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 hsl(220 15% 15% / 0.5);
+  }
+
+  /* Code characters */
+  .code-char {
+    @apply inline-block transition-all duration-75;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .code-char-correct {
+    color: hsl(var(--code-correct));
+    text-shadow: 0 0 8px hsl(var(--code-correct) / 0.5);
+  }
+
+  .code-char-incorrect {
+    color: hsl(var(--code-incorrect));
+    background: hsl(var(--code-incorrect) / 0.2);
+    border-radius: 2px;
+    text-shadow: 0 0 8px hsl(var(--code-incorrect) / 0.5);
+  }
+
+  .code-char-current {
+    @apply relative;
+    color: hsl(var(--foreground));
+  }
+
+  .code-char-current::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary;
+    animation: blink 1s ease-in-out infinite;
+  }
+
+  /* Filter chips */
+  .filter-chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200;
+    @apply bg-secondary text-muted-foreground border border-transparent;
+    @apply hover:bg-muted hover:text-foreground;
+  }
+
+  .filter-chip-active {
+    @apply bg-primary text-primary-foreground;
+    box-shadow: 0 0 20px -4px hsl(var(--primary) / 0.6);
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium;
+    @apply bg-transparent text-primary border border-primary/50;
+    @apply hover:bg-primary/10 transition-all duration-200;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px -4px hsl(var(--primary) / 0.4);
+  }
+}
+
+@layer utilities {
+  /* Arduino accent colors */
+  .text-arduino-teal {
+    color: hsl(var(--arduino-teal));
+  }
+
+  .text-arduino-green {
+    color: hsl(var(--arduino-green));
+  }
+
+  .text-arduino-yellow {
+    color: hsl(var(--arduino-yellow));
+  }
+
+  .text-arduino-red {
+    color: hsl(var(--arduino-red));
+  }
+
+  .bg-arduino-teal {
+    background-color: hsl(var(--arduino-teal));
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

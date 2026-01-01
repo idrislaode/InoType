@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>InoType - Typing Speed Test for Arduino Developers</title>
+
+    <meta
+      name="description"
+      content="Improve your Arduino coding speed with this typing test. Practice with real library snippets from Servo, WiFi, NeoPixel, LCD, and more."
+    />
+    <meta name="author" content="InoType" />
+
+    <meta
+      property="og:title"
+      content="InoType - Typing Speed Test for Arduino Developers"
+    />
+    <meta
+      property="og:description"
+      content="Improve your Arduino coding speed with this typing test. Practice with real library snippets."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="module" crossorigin src="/InoType/assets/index-BnQ31Hz1.js"></script>
+    <link rel="stylesheet" crossorigin href="/InoType/assets/index-HyXrbLez.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- Vite entry -->
+
+    <!-- Scrolling Title Script -->
+    <script>
+      const titleText =
+        " ⌨️ InoType • Typing Speed Test for Arduino Developers ";
+      let position = 0;
+
+      setInterval(() => {
+        document.title =
+          titleText.substring(position) +
+          titleText.substring(0, position);
+        position = (position + 1) % titleText.length;
+      }, 200);
+    </script>
+  </body>
+</html>
